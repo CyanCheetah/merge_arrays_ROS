@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+#Im just gonna add more commenting after Git commit cuz i was lazy :o
+#All using Docker!!!!
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int32MultiArray
@@ -8,13 +10,13 @@ class MergeArraysNode(Node):
     def __init__(self):
         super().__init__('merge_arrays_node')
 
-        # Subscribers for the two input arrays
+        # Gets the 2 arrays subscribes
         self.array1_sub = self.create_subscription(
             Int32MultiArray, '/input/array1', self.array1_callback, 10)
         self.array2_sub = self.create_subscription(
             Int32MultiArray, '/input/array2', self.array2_callback, 10)
 
-        # Publisher for the merged array
+        # publishes merged array into that node
         self.merged_array_pub = self.create_publisher(
             Int32MultiArray, '/output/array', 10)
 
@@ -46,7 +48,7 @@ class MergeArraysNode(Node):
     else:
         self.get_logger().info('Waiting for both arrays to be received.')
 
-
+#just initializes args and gets the job done
 def main(args=None):
     rclpy.init(args=args)
     node = MergeArraysNode()
